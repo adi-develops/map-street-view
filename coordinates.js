@@ -1,5 +1,7 @@
 import * as olProj from 'ol/proj';
 
+// Array of the coordinates and corresponding image files
+
 const coordinates = [
   {
     file_name: "HMTpano_000001_000000.jpg",

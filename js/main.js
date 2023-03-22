@@ -35,6 +35,8 @@ const map = new Map({
   }),
 });
 
+// Adding a new vector layer for markers
+
 let vectorSource = new VectorSource();
 let vectorLayer = new VectorLayer({
   source: vectorSource,
@@ -57,6 +59,8 @@ for (let i = 0; i < coordinates.length; i++) {
 
 vectorSource.addFeatures(markerArray);
 
+// Adding interaction to the vector layer so the user can click on it
+
 let select = new Select({
   layers: [vectorLayer],
 });
@@ -76,10 +80,14 @@ select.on("select", function (event) {
     selectedFeature.setStyle(selectedStyle);
     let clickedLongitude = event.selected[0].getGeometry().flatCoordinates[0];
 
+    // Finding the selected coordinate in the coordinates array
+
     let foundCoordinate = coordinates.find(
       (item) => item.longitude_latitude[0] == clickedLongitude
     );
     console.log(foundCoordinate);
+
+    // Checking if the image is present in the folder or not and then viewing it in the viewer
 
     fetch("../images/" + foundCoordinate.file_name)
       .then((response) => {
